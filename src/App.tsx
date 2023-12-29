@@ -14,6 +14,11 @@ import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter,Outlet, Route, Routes } from "react-router-dom";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
+import { BlogPostList } from "./pages/blog-posts/list";
+import { BlogPostEdit } from "./pages/blog-posts/edit";
+import { BlogPostShow } from "./pages/blog-posts/show";
+import { BlogPostCreate } from "./pages/blog-posts/create";
+
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +38,9 @@ function App() {
                   show: "/blog-posts/show/:id",
                   create: "/blog-posts/create",
                   edit: "/blog-posts/edit/:id",
+                  // meta:{
+                  //   canDelete: true,
+                  // }
                 },
               ]}
               options={{
@@ -52,10 +60,10 @@ function App() {
             >
               <Route index element={<NavigateToResource resource="blog_posts" />} />
               <Route path="blog-posts">
-                <Route index element={<ChakraUIInferencer />} />
-                <Route path="show/:id" element={<ChakraUIInferencer />} />
-                <Route path="edit/:id" element={<ChakraUIInferencer />} />
-                <Route path="create" element={<ChakraUIInferencer />} />
+                <Route index element={<BlogPostList />} />
+                <Route path="show/:id" element={<BlogPostShow />} />
+                <Route path="edit/:id" element={<BlogPostEdit />} />
+                <Route path="create" element={<BlogPostCreate />} />
               </Route>
               <Route path="*" element={<ErrorComponent />} />
             </Route>
